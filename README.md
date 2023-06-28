@@ -7,13 +7,13 @@
   - [x] Files needed (index.html, sytle.css and script.js), I guess the css is optional.
 - [x] The game will be played completely from the console.  
 - [x] Opponent will be the computer
-- [ ] Make a function called `getComputerChoice` that will randomly return "Rock, Paper or Scissors".
-	- [ ] This is how we'll get the computer to play.
-- [ ] Write a function the plays a single round of "Rock Paper Scissors".
-	- [ ] The function should take 2 parameters. 
-  - [ ] 1. Player Selection 
-  - [ ] 2. Computer Selection
-	- [ ] The function should return a string that declares the winner of the round.   e.g. "You Lose! Paper beats Rock"
+- [x] Make a function called `getComputerChoice` that will randomly return "Rock, Paper or Scissors".
+	- [x] This is how we'll get the computer to play.
+- [x] Write a function the plays a single round of "Rock Paper Scissors".
+	- [x] The function should take 2 parameters.
+  - [x] 1. Player Selection
+  - [x] 2. Computer Selection
+	- [x] The function should return a string that declares the winner of the round.   e.g. "You Lose! Paper beats Rock"
 	- [ ] Make  the playersSelection parameter case-insensitive.  All these are valid inputs `rock`, `ROCK`, `Rock`, `RoCk` and any other variant.
 	- [ ] Make sure that the function returns a value.  Will need to 
 - [ ] Write a function called `game`
