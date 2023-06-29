@@ -13,9 +13,9 @@
 	- [x] The function should take 2 parameters.
   - [x] 1. Player Selection
   - [x] 2. Computer Selection
-	- [x] The function should return a string that declares the winner of the round.   e.g. "You Lose! Paper beats Rock"
-	- [ ] Make  the playersSelection parameter case-insensitive.  All these are valid inputs `rock`, `ROCK`, `Rock`, `RoCk` and any other variant.
-	- [ ] Make sure that the function returns a value.  Will need to 
+	- [ ] The function should return a string that declares the winner of the round.   e.g. "You Lose! Paper beats Rock"
+	- [x] Make  the playersSelection parameter case-insensitive.  All these are valid inputs `rock`, `ROCK`, `Rock`, `RoCk` and any other variant.
+	- [x] Make sure that the function returns a value.  Will need to use that value later.
 - [ ] Write a function called `game`
 	- [ ] Use the previous function (play single round) inside of function game
 	- [ ] Game will play a 5 round game that keeps scores, and reports a winner and a loser at the end.
