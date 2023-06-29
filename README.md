@@ -13,7 +13,7 @@
 	- [x] The function should take 2 parameters.
   - [x] 1. Player Selection
   - [x] 2. Computer Selection
-	- [ ] The function should return a string that declares the winner of the round.   e.g. "You Lose! Paper beats Rock"
+	- [x] The function should return a string that declares the winner of the round.   e.g. "You Lose! Paper beats Rock"
 	- [x] Make  the playersSelection parameter case-insensitive.  All these are valid inputs `rock`, `ROCK`, `Rock`, `RoCk` and any other variant.
 	- [x] Make sure that the function returns a value.  Will need to use that value later.
 - [ ] Write a function called `game`
@@ -21,7 +21,7 @@
 	- [ ] Game will play a 5 round game that keeps scores, and reports a winner and a loser at the end.
 	- [ ] Feel free to use a loop.  
 	- [ ] Use `console.log()` to display the results of each round and the winner at the end.
-	- [ ] Use `prompt` to get input from the user
+	- [x] Use `prompt` to get input from the user
 - [ ] Feel free to re-work previous functions as needed.  Specifically, you might want to change the return value to something more useful.
 - [ ] Feel free to create more "helper" functions if needed
 
