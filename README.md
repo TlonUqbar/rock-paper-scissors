@@ -16,14 +16,14 @@
 	- [x] The function should return a string that declares the winner of the round.   e.g. "You Lose! Paper beats Rock"
 	- [x] Make  the playersSelection parameter case-insensitive.  All these are valid inputs `rock`, `ROCK`, `Rock`, `RoCk` and any other variant.
 	- [x] Make sure that the function returns a value.  Will need to use that value later.
-- [ ] Write a function called `game`
-	- [ ] Use the previous function (play single round) inside of function game
-	- [ ] Game will play a 5 round game that keeps scores, and reports a winner and a loser at the end.
-	- [ ] Feel free to use a loop.  
-	- [ ] Use `console.log()` to display the results of each round and the winner at the end.
+- [x] Write a function called `game`
+	- [x] Use the previous function (play single round) inside of function game
+	- [x] Game will play a 5 round game that keeps scores, and reports a winner and a loser at the end.
+	- [x] Feel free to use a loop.  
+	- [x] Use `console.log()` to display the results of each round and the winner at the end.
 	- [x] Use `prompt` to get input from the user
-- [ ] Feel free to re-work previous functions as needed.  Specifically, you might want to change the return value to something more useful.
-- [ ] Feel free to create more "helper" functions if needed
+- [x] Feel free to re-work previous functions as needed.  Specifically, you might want to change the return value to something more useful.
+- [x] Feel free to create more "helper" functions if needed
 
 
 ### GAME PLAY

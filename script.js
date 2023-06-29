@@ -6,13 +6,18 @@
 
 let playerSelection = '';
 let computerSelection = '';
-let roundNumber = 0;
+let ready = confirm("Are you ready to play a game of 'Rock-Paper-Scissors'?\n\nBest of 5 wins!   Good luck!");
+
+if(ready){
+  console.log(game());
+} else {
+  alert ("Reload the page when you are ready to play!");
+}
 
 
 // using a random number to generate a string based choice
 function getComputerChoice() {
   let choice = Math.floor(Math.random() * 3) + 1;
-
   
   switch (choice) {
     case 1:
@@ -24,7 +29,6 @@ function getComputerChoice() {
     default:
       break;
   }
-
 }
 
 // take the input and lowercase it, then compare it to valid options
@@ -53,8 +57,7 @@ function playRound(player, computer) {
   computerSelection = computer;
 
   // display player and computer choices
-  console.log("Player selected: ", playerSelection);
-  console.log("Computer selected: ", computerSelection);
+  console.log(`Player selected: "${playerSelection}" \nComputer selected: "${computerSelection}"`);
 
   // not ideal but it will do for now
   switch(playerSelection){
@@ -99,10 +102,40 @@ function playRound(player, computer) {
 }
 
 function game() {
+  let roundWinner = '';
+  let winner = '';
+  let result = '';
 
+  let playerScore = 0;
+  let computerScore = 0;
+  let round = 0;
+
+  for( round; round < 5; ){
+    result = playRound(getHumanChoice(), getComputerChoice());
+
+    if( result.includes("You Win!")){
+      roundWinner = "Player wins this round!";
+      playerScore++;
+      round++;
+    } else if (result.includes("You Lose!")){
+      roundWinner = "Computer wins this round!";
+      computerScore++;
+      round++;
+    } else {
+      roundWinner = "No winner this round. Play again!";
+    }
+    console.log(`${roundWinner}. Current score: Player ${playerScore} - Computer ${computerScore} `);
+
+  }
+
+  if (playerScore > computerScore){
+    winner = "Player wins game!";
+  } else {
+    winner = "Computer wins game!";
+  }
+
+  return `Final score: Player ${playerScore} - Computer ${computerScore}.\nWinner: ${winner}`;
 }
 
 
-// console.log("Computer choice: ", getComputerChoice());
-// console.log("Human choice:", getHumanChoice());
-console.log("Let's play a round: ", playRound(getHumanChoice(), getComputerChoice()));
+
