@@ -101,11 +101,11 @@ function playRound(player, computer) {
   }
 }
 
+
 function game() {
   let roundWinner = '';
   let winner = '';
   let result = '';
-
   let playerScore = 0;
   let computerScore = 0;
   let round = 0;
@@ -125,7 +125,6 @@ function game() {
       roundWinner = "No winner this round. Play again!";
     }
     console.log(`${roundWinner}. Current score: Player ${playerScore} - Computer ${computerScore} `);
-
   }
 
   if (playerScore > computerScore){
@@ -134,7 +133,7 @@ function game() {
     winner = "Computer wins game!";
   }
 
-  return `Final score: Player ${playerScore} - Computer ${computerScore}.\nWinner: ${winner}`;
+  return `Final score: Player ${playerScore} - Computer ${computerScore}\nWinner: ${winner}`;
 }
 
 
