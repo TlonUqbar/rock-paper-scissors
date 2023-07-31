@@ -1,5 +1,5 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap'); */
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
 
 
 
@@ -11,6 +11,7 @@
 
 html {
   background-color: #0d1117;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -34,24 +35,41 @@ kbd{
 }
 
 h1{
+  font-size: 36px;
   margin-bottom: 20px;
   line-height: 2;
 }
 
 h2{
-  font-size: 30px;
-  margin-bottom: 20px;
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+h3{
+  margin: 60px 0 10px;
 }
 
 p {
   line-height: 2.5;
 }
 
-a{
+a:link, a:hover, a:visited, a:active{
   text-decoration: none;
   font-weight: 600;
+  color: blue;
 }
 
 a:hover{
   color:orangered;
+}
+
+.start{
+  display:block;
+  margin-top: 20px;
+  color:blue;
+}
+
+.start:hover{
+  border: 1px solid wheat;
+  color: orangered;
 }

@@ -6,12 +6,16 @@
 
 let playerSelection = '';
 let computerSelection = '';
-let ready = confirm("Are you ready to play a game of 'Rock-Paper-Scissors'?\n\nBest of 5 wins!   Good luck!");
+let ready = ''; 
 
-if(ready){
-  console.log(game());
-} else {
-  alert ("Reload the page when you are ready to play!");
+
+function startGame(){
+  ready = confirm("Are you ready to play a game of 'Rock-Paper-Scissors'?\n\nBest of 5 wins!   Good luck!");
+  if(ready){
+    console.log(game());
+  } else {
+    alert ("Click the button when you are ready to play!");
+  }
 }
 
 
