@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
 
 
@@ -12,14 +12,11 @@
 html {
   background-color: #0d1117;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
 body {
   color:#BADA55;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   border: 1px solid wheat;
   min-height: 100dvh;
@@ -35,22 +32,48 @@ kbd{
 }
 
 h1{
-  font-size: 36px;
+  font-size: 40px;
   margin-bottom: 20px;
-  line-height: 2;
+  line-height: 1.5;
+}
+
+.h1{
+  margin-bottom: 20px;
+  line-height: 1.5;
 }
 
 h2{
-  font-size: 28px;
-  margin-bottom: 40px;
+  font-size: 30px;
+  /* margin-bottom: 40px; */
+}
+
+.log-heading{
+  margin-bottom: 30px;
 }
 
 h3{
+  font-size: 26px;
+}
+
+.h3{
   margin: 60px 0 10px;
 }
 
 p {
   line-height: 2.5;
+}
+
+ol{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+li{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 3px;
 }
 
 a:link, a:hover, a:visited, a:active{
@@ -72,4 +95,168 @@ a:hover{
 .start:hover{
   border: 1px solid wheat;
   color: orangered;
+}
+
+.button{
+  padding: 6px 20px;
+  background-color: #13242C;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+#game-container{
+  display:flex;
+  justify-content: space-around;
+  align-items:stretch;
+  flex-direction: column;
+  min-height: calc(100dvh - 2px);
+  /* border: 1px solid wheat; */
+  
+}
+
+#announcements{
+  display: flex;
+  flex-basis: 120px;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+}
+
+#board{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: 0 2 640px;
+  background-color: #131721;
+  border: 1px dotted wheat;
+  border-radius: 5px;
+  color: #e2a24f;
+  margin: 0 10px;
+  padding: 20px;
+}
+
+#score-board{
+  display:flex;
+  justify-content: center;
+  align-items: start;
+  color: #e2a24f;
+  border-radius: 5px;
+}
+
+#player1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 300px;
+  margin-right: 10px;
+  padding-top: 50px;
+}
+
+#history{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-basis: 580px;
+  justify-content: center;
+  align-items: stretch;
+  background-color: #01111a;
+  border: 1px dotted burlywood;
+  border-radius: 10px;
+}
+
+#player2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 300px;
+  padding-top: 50px;
+  margin-right: 10px;
+}
+
+.contestants{
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.score{
+  background-color: #13242C;
+  border: 1px solid burlywood;
+  border-radius: 6px;
+  padding: 10px;
+  width: 80px;
+  font-size: 30px;
+  margin: 2px 20px 0 10px;
+}
+
+.log{
+  padding: 10px 0;
+}
+
+.winner{
+  background-color:rgb(11, 84, 11);
+}
+
+.loser{
+  background-color: rgb(125, 21, 21);
+}
+
+.tie{
+  background-color: #1e293b;
+}
+
+.winning{
+  background-color: rgba(127, 255, 65, 0.5);
+}
+
+.losing{
+  background-color: rgba(255, 30, 30, 0.5);
+}
+
+.neutral{
+  background-color:#1e293b;
+}
+
+.winner, .loser, .tie{
+  padding: 4px 6px;
+  margin: 0 10px;
+  border-radius: 50%;
+  border: 1px rgb(161, 136, 81);
+  border-style:groove ;
+  min-width: 80px;
+}
+
+#controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 20px; */
+  flex-basis: 80px;
+}
+
+.player1, .player2{
+  flex-basis: 90px;
+}
+
+.result{
+  flex-basis: 210px;
+}
+
+.player1, .player2, .result{
+  line-height: 2;
+  text-transform: capitalize;
+}
+
+
+.round-result{
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.round-play{
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(127, 255, 65, 0.5);
 }
