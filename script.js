@@ -13,7 +13,6 @@ let result = '';
 let round = 0;
 let playerScore = 0;
 let computerScore = 0;
-// let roundWinner = '';
 let gameWinner = '';
 const start = document.querySelector("#button");
 const clickRock = document.querySelector("#rock");
@@ -198,44 +197,35 @@ function updateLastScreen(p1, p2){
 
 
 function gameOver(winner) { 
+  // remove event listeners
   clickRock.removeEventListener("click", rock)
   clickPaper.removeEventListener("click", paper);
   clickScissors.removeEventListener("click", scissors);
   
   game.style.setProperty( "transform", "scale(0)" );
   over.style.setProperty( "transform", "scale(0)" );
-  // over.style.setProperty( "min-height", "80vh" );
 
   window.setTimeout( () => (game.classList.remove("show"), game.style.display = "none" ), 1000);
-
   window.setTimeout( ()=> { over.style.display = ""}, 990)
   window.setTimeout( ()=> ( over.style = "min-height: 98vh, transform: scale(1)" ), 1001);
   window.setTimeout( ()=> ( over.style = "" ), 2001);
-  
 }
 
 function startGame(){
-
-  // add event listener for the next panel
+  // add event listeners for the next panel
   clickRock.addEventListener( "click", rock )
   clickPaper.addEventListener( "click", paper);
   clickScissors.addEventListener( "click", scissors,);
-
   
   intro.style.setProperty( "transform", "scale(0)" );
   game.style.setProperty( "transform", "scale(0)" );
-  // game.style.setProperty( "min-height", "80vh" );
 
   window.setTimeout( () => ( intro.classList.remove("show"), intro.style.display = "none" ), 1000);
-
   window.setTimeout( ()=> { game.style.display = ""}, 900 );
   window.setTimeout( ()=> ( game.style = "min-height: 98vh, transform: scale(1)" ), 1001);
-  
-
 }
 
 function resetGame(){
-  
   result = '';
   round = 0;
   playerScore = 0;
@@ -245,37 +235,23 @@ function resetGame(){
   clickPaper.addEventListener( "click", paper);
   clickScissors.addEventListener( "click", scissors,);
   
-  // intro.style.display = "none";
-
   over.style.setProperty( "transform", "scale(0)" );
   game.style.setProperty( "transform", "scale(0)" );
-  // over.style.setProperty( "transform", "scale(0)" );
-  // over.style.setProperty( "min-height", "80vh" );
 
   window.setTimeout( () => ( intro.classList.remove("show"), intro.style.display = "none" ), 1000);
   window.setTimeout( ()=> { game.style.display = ""}, 900 );
-  window.setTimeout( ()=> ( game.style = "min-height: 98vh, transform: scale(1)" ), 1001);
+  window.setTimeout( ()=> ( game.style = "min-height: 98vh, transform: scale(1)" ), 1010);
+  window.setTimeout( () => (over.style.display = "none"), 1000 );
 
   resetScores();
-  resetPlayLog();
-
-  // window.setTimeout( () => (game.classList.remove("show"), game.style.display = "none" ), 1000);
-
-  // window.setTimeout( ()=> { over.style.display = ""}, 990)
-  // window.setTimeout( ()=> ( over.style = "min-height: 98vh, transform: scale(1)" ), 1001);
-  // window.setTimeout( ()=> ( over.style = "" ), 2001);
-
 }
 
 function resetScores(){
-    // update scoreboard
+    // reset all boards and scores
     playerScoreBox.innerText = playerScore;
     computerScoreBox.innerText = computerScore;
     document.querySelector(".player1").innerHTML = '';
     document.querySelector(".player2").innerHTML = '';
     document.querySelector(".result").innerHTML = "<h1>Good Luck!</h1>";
-}
-
-function resetPlayLog(){
-  playLog.innerHTML = '';
+    playLog.innerHTML = '';
 }

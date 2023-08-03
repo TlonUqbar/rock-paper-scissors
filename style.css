@@ -286,7 +286,7 @@ button{
 }
 
 .player1, .player2{
-  flex-basis: 90px;
+  flex-basis: 60px;
   transform: scale(3);
 }
 
@@ -484,8 +484,8 @@ button{
   display: flex;
   flex-direction:column;
   flex-wrap: wrap;
-  flex-basis: calc(48vh);
-  min-width: calc(47vw);
+  flex-basis: 48vh;
+  min-width: 47vw;
   justify-content: center;
   align-items: center;
   background-color: rgba(1, 17, 26, 1);;
@@ -493,7 +493,7 @@ button{
   border-radius: 10px;
   transform: scale(2);
   transform-origin: center top;
-  opacity: .7;
+  opacity: .75;
   transition: all 1.25s ease-in-out;
   margin-top: -225px;
 }
@@ -515,7 +515,7 @@ button{
   color: #e2a24f;
   justify-content: center;
   align-items: center;
-  flex: 0 1 640px;
+  flex: 0 1 500px;
   padding: 20px;
   margin: 0 10px;
 }
@@ -535,7 +535,6 @@ button{
   border: none;
   background-color: none;
   display: flex;
-  flex-basis: 580px;
   border-radius:10px;
   flex-direction: column;
   flex-wrap: wrap;
@@ -549,7 +548,7 @@ button{
   justify-content: center;
   align-items: center;
   padding-top: 50px;
-  margin-right: 10px;
+  margin-left: 20px;
 }
 
 #player2-over{
@@ -559,7 +558,7 @@ button{
   justify-content: center;
   align-items: center;
   padding-top: 50px;
-  margin-right:10px;
+  margin-right:20px;
 }
 
 .button{
