@@ -8,29 +8,76 @@
   <script src="script.js" defer></script>
 </head>
 <body>
- 
-  <div id="game-container">
+  
+  <div id="intro-container" class="show" style="transform: scale(1);">
+    <div id="greeting">
+      <h1>Greetings Human!</h1>
+    </div>
+
+    <div id="question">
+      <h2>Ready to play?</h2>
+    </div>
+
+    <div id="rps">
+      <div id="pieces">
+        <div class="rock">🪨</div> 
+        <div class="paper">📜</div> 
+        <div class="scissors">✂️</div>
+      </div>
+    </div>
+
+    <div id="start">
+      <!-- <div id="button-container"> -->
+        <button id="button" data-option="Keys">Enter</button>
+      <!-- </div> -->
+      <!-- <div id="instructions"> -->
+        <p>Click Button or Press <kbd>Enter</kbd> Key.</p>
+      <!-- </div> -->
+    </div>
+    
+
+  </div>
+  
+  <div id="game-container" style="display: none; transform: scale(0);">
+    
+    <div class="header">
+      <h2></h2>
+    </div>
+    
     <div id="announcements">
       <div id="board">
-        <div class="player1">Rock</div>
-        <div class="result">You Lose! Paper Covers Rock.</div>
-        <div class="player2">paper</div>
+        <div class="player1"></div>
+        <div class="result"><h1>Good Luck!</h1></div>
+        <div class="player2"></div>
       </div>
     </div>  
     
+    <div class="spacer">
+      <h2></h2>
+    </div>
 
     <div id="score-board">
       <div id="player1">
         <div id="p1" class="score neutral">0</div>
-        <p class="contestants">Player 1</p>
+        <p class="contestants">Human</p>
       </div>
-      <div id="history">
-        <div class="log">
-          <h2 class="log-heading">Log</h2>
-          <ol id="plays">
-          </ol>
+      
+      <div id="middle-container">      
+
+        <!-- <div id="game-over" style="display: none;">
+          <h2 class="over">Game Over</h2>
+          <h3 id="outcome"></h3>
+        </div> -->
+
+        <div id="history" class="show">
+          <div class="log">
+            <h2 class="log-heading">Plays</h2>
+            <ol id="plays">
+            </ol>
+          </div>
         </div>
       </div>
+
       <div id="player2">
         <div id="p2" class="score neutral">0</div>
         <p class="contestants">Computer</p>
@@ -39,17 +86,61 @@
 
     <div id="controls">
       <div id="rock-container">
-        <a href="#" id="rock" class="button">Rock</a>
+        <a href="#" id="rock" >🪨</a>
       </div>
       <div id="paper-container">
-        <a href="#" id="paper" class="button">Paper</a>
+        <a href="#" id="paper">📜</a>
       </div>
       <div id="scissors-container">
-        <a href="#" id="scissors" class="button">Scissors</a>
+        <a href="#" id="scissors">✂️</a>
       </div>
     </div>
     <p>Click on your choice.</p>
   </div>
+
+  <div id="over-container"  style="display: none; transform: scale(0);">
+    <div class="header">
+      <h2>&nbsp;</h2>
+    </div>
+
+    <div id="annoucements-over">
+      <div id="board-over">
+        <div class="player1"></div>
+        <div class="result"></div>
+        <div class="player2"></div>
+      </div>
+    </div>
+
+    <div id="score-board-over">
+      
+      <div id="player1-over">
+        <div id="p1-over" class="score">0</div>
+        <p class="contenstants">Human</p>
+      </div>
+      <div id="history-over">
+        
+        <div id="game-over">
+          <h2 class="over">Game Over</h2>
+          <h3 id="outcome">You Lose!</h3>
+
+          <div class="play-again">
+            <a id="again" href="#game-container" class="button">Play Again?</a> 
+            <a id="quit" href="" class="button">Quit</a>
+          </div>
+        </div>  
+
+      </div>
+      <div id="player2-over">
+        <div id="p2-over" class="score neutral">0</div>
+        <p class="contenstants">Computer</p>
+      </div>
+    
+    </div>
+  </div>
+
+
+
+
 </body>
 </html>
 
