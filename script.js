@@ -41,17 +41,9 @@ start.addEventListener( "click", startGame );
 // using a random number to generate a string based choice
 function getComputerChoice() {
   let choice = Math.floor(Math.random() * 3) + 1;
+  const moves = { 1 : "Rock", 2 : "Paper", 3 : "Scissors"}
   
-  switch (choice) {
-    case 1:
-      return "Rock";
-    case 2:
-      return "Paper";
-    case 3:
-      return "Scissors";
-    default:
-      break;
-  }
+  return moves[choice];
 }
 
 function getHumanChoice(choice) {
@@ -64,44 +56,19 @@ function getHumanChoice(choice) {
 
 
 function playRound(player, computer) {
-  playerSelection = player.toLowerCase();
-  computerSelection = computer.toLowerCase();
-
-  // display player and computer choices
-  console.log(`Player selected: "${playerSelection}" \nComputer selected: "${computerSelection}"`);
-
   const moves = { 
     "rock" : { "rock": "It's a tie! Play again!", "paper": "You Lose! Paper covers Rock.", "scissors" : "You Win! Rock breaks Scissors." },
     "paper" : { "rock": "You Win! Paper covers Rock.", "paper": "It's a tie! Play again!", "scissors" : "You Lose! Scissors cuts Paper." },
     "scissors" : { "rock": "You Lose! Rock breaks Scissors.", "paper": "You Win! Scissors cuts Paper.", "scissors" : "It's a tie! Play again!" }
   }
+  playerSelection = player.toLowerCase();
+  computerSelection = computer.toLowerCase();
 
-  // console.log("result:", moves[playerSelection][computerSelection]);
   return moves[playerSelection][computerSelection];
 }
 
 
-function updateScores(p1, p2, result){
-  let player1 = document.querySelector(".player1");
-  let player2 = document.querySelector(".player2");
-  let results = document.querySelector(".result");
-  let parts  = result.split("! ");
-
-  // results.textContent = result;
-  results.innerHTML = `<h3 class="round-result">${parts[0]}</h3><h4 class="round-play">${parts[1]}</h4>`;
-  player1.textContent = icons[p1];
-  player2.textContent = icons[p2];
-
-  
-  // rotate icons in shout box
-  if(p1 === "rock") player1.style.rotate = "";
-  if(p2 === "rock") player2.style.rotate = "";
-  if(p1 === "scissors") player1.style.setProperty("rotate", "0.25turn");
-  if(p2 === "scissors") player2.style.setProperty("rotate", "0.25turn");
-  if(p1 === "paper") player1.style.setProperty("rotate", "0.68turn");
-  if(p2 === "paper") player2.style.setProperty("rotate", "0.68turn"); 
-
-  // update score keeping
+function scoreKeeping(result) {
   if( result.includes("You Win!")){
     playerScore++;
     round++;
@@ -111,93 +78,103 @@ function updateScores(p1, p2, result){
   } else {
     return;
   }
-  
-  // update scoreboard
-  playerScoreBox.innerText = playerScore;
-  computerScoreBox.innerText = computerScore;
+}
 
-  // apply styles to show who is winning/losing
-  if(playerScore > computerScore){
-    playerScoreBox.classList = ["score winning"];
-    computerScoreBox.classList = ["score losing"];
-  }else if (playerScore < computerScore){
-    playerScoreBox.classList = ["score losing"];
-    computerScoreBox.classList = ["score winning"];
-  } else {
-    playerScoreBox.classList = ["score neutral"];
-    computerScoreBox.classList = ["score neutral"];
-  }
+function fixIconOrientation(div1, div2, div3, move1, move2, result){
+  let parts  = result.split("! ");
 
-  // end of match
+  div3.innerHTML = `<h3 class="round-result">${parts[0]}</h3><h4 class="round-play">${parts[1]}</h4>`;
+  div1.textContent = icons[move1];
+  div2.textContent = icons[move2];
+ 
+  if(move1 === "rock") div1.style.rotate = "";
+  if(move2 === "rock") div2.style.rotate = "";
+  if(move1 === "scissors") div1.style.setProperty("rotate", "0.25turn");
+  if(move2 === "scissors") div2.style.setProperty("rotate", "0.25turn");
+  if(move1 === "paper") div1.style.setProperty("rotate", "0.68turn");
+  if(move2 === "paper") div2.style.setProperty("rotate", "0.68turn"); 
+}
+
+
+function updateScores(playerSelection, computerSelection, result){
+  let player1 = document.querySelector(".player1");
+  let player2 = document.querySelector(".player2");
+  let results = document.querySelector(".result");
+
+  fixIconOrientation(player1, player2, results, playerSelection, computerSelection, result);
+  scoreKeeping(result);
+  updateScoreBoxes(playerScoreBox, computerScoreBox)
+
   if( round === 5 ) {
-   if(playerScore > computerScore){
-    gameWinner = "You Win!"
-   } else{
-    gameWinner = "You Lose!"
-   }
-  
-  updateLastScreen(p1, p2)
-  gameOver(gameWinner);
+    updateLastScreen(playerSelection, computerSelection);
+    gameOver();
   }
 }
 
 function updateLog(){
   const li = document.createElement("li");
-  let p1 = playerSelection;
-  let p2 = computerSelection;
-  
-  // insert round plays into play log
+  let state1 = '';
+  let state2 = '';
+
   if(result.includes("You Win!")){
-    li.innerHTML = `<div class="winner">${icons[p1]}</div> <div>Round ${round}</div> <div class="loser">${icons[p2]}</div>`;
+   state1 = "winner";
+   state2 = "loser";
   } else if (result.includes("You Lose!")){
-    li.innerHTML = `<div class="loser">${icons[p1]}</div> <div>Round ${round}</div> <div class="winner">${icons[p2]}</div>`;
+    state1 = "loser";
+    state2 = "winner";
   } else {
-    li.innerHTML = `<div class="tie">${icons[p1]}</div> <div>Round ${round}</div> <div class="tie">${icons[p2]}</div>`;
+    state1 = "tie";
+    state2 = "tie";
   }  
+  li.innerHTML = `<div class="${state1}">${icons[playerSelection]}</div> <div>Round ${round}</div> <div class="${state2}">${icons[computerSelection]}</div>`;
   playLog.appendChild(li);
 }
 
-function updateLastScreen(p1, p2){
+function updateLastScreen(playerSelection, computerSelection){
   let player1 = document.querySelector("#board-over .player1");
   let player2 = document.querySelector("#board-over .player2");
   let results = document.querySelector("#board-over .result");
-  let p1Final = document.querySelector("#p1-over");
-  let p2Final = document.querySelector("#p2-over");
-  let parts  = result.split("! ");
+  let playerScoreBox = document.querySelector("#p1-over");
+  let computerScoreBox = document.querySelector("#p2-over");
 
   again.addEventListener("click", resetGame );
   quit.addEventListener("click", startGame );
 
-  // results.textContent = result;
-  results.innerHTML = `<h3 class="round-result">${parts[0]}</h3><h4 class="round-play">${parts[1]}</h4>`;
-  player1.textContent = icons[p1];
-  player2.textContent = icons[p2];
+  fixIconOrientation(player1, player2, results, playerSelection, computerSelection, result);
+  updateScoreBoxes(playerScoreBox, computerScoreBox);
+  finalOutcome();
+}
 
-  p1Final.innerText = playerScore;
-  p2Final.innerText = computerScore;  
-
+function finalOutcome(){
   if(playerScore > computerScore){
-    p1Final.classList = ["score winning"];
-    p2Final.classList = ["score losing"];
-  }else if (playerScore < computerScore){
-    p1Final.classList = ["score losing"];
-    p2Final.classList = ["score winning"];
-  } else {
-    p1Final.classList = ["score neutral"];
-    p2Final.classList = ["score neutral"];
-  }
+    gameWinner = "You Win!";
+    outcome.classList = ["won"];
+   } else{
+    gameWinner = "You Lose!";
+    outcome.classList = ["lost"];
+   }
+   outcome.textContent = gameWinner;
+}
 
-  outcome.textContent = gameWinner;
-  if(gameWinner === "You Win!"){
-    outcome.classList.add("won");
+function updateScoreBoxes(playerScoreBox, computerScoreBox){
+  let player = playerScoreBox;
+  let computer = computerScoreBox;
+  player.innerText = playerScore;
+  computer.innerText = computerScore;
+  if(playerScore > computerScore){
+    player.classList = ["score winning"];
+    computer.classList = ["score losing"];
+  }else if (playerScore < computerScore){
+    player.classList = ["score losing"];
+    computer.classList = ["score winning"];
   } else {
-    outcome.classList.add("lost");
+    player.classList = ["score neutral"];
+    computer.classList = ["score neutral"];
   }
 }
 
-
-function gameOver(winner) { 
-  // remove event listeners
+function gameOver() { 
+  // remove event listeners for button selections
   clickRock.removeEventListener("click", rock)
   clickPaper.removeEventListener("click", paper);
   clickScissors.removeEventListener("click", scissors);
@@ -226,6 +203,7 @@ function startGame(){
 }
 
 function resetGame(){
+  //reset scores
   result = '';
   round = 0;
   playerScore = 0;
@@ -239,17 +217,19 @@ function resetGame(){
   game.style.setProperty( "transform", "scale(0)" );
 
   window.setTimeout( () => ( intro.classList.remove("show"), intro.style.display = "none" ), 1000);
-  window.setTimeout( ()=> { game.style.display = ""}, 900 );
-  window.setTimeout( ()=> ( game.style = "min-height: 98vh, transform: scale(1)" ), 1010);
-  window.setTimeout( () => (over.style.display = "none"), 1000 );
+  window.setTimeout( () => ( game.style.display = "" ), 900 );
+  window.setTimeout( () => ( game.style = "min-height: 98vh, transform: scale(1)" ), 1010);
+  window.setTimeout( () => ( over.style.display = "none" ), 1000 );
 
-  resetScores();
+  resetScoresBox();
 }
 
-function resetScores(){
-    // reset all boards and scores
+function resetScoresBox(){
+    // reset all boards 
     playerScoreBox.innerText = playerScore;
     computerScoreBox.innerText = computerScore;
+    playerScoreBox.classList = ["score neutral"];
+    computerScoreBox.classList = ["score neutral"];
     document.querySelector(".player1").innerHTML = '';
     document.querySelector(".player2").innerHTML = '';
     document.querySelector(".result").innerHTML = "<h1>Good Luck!</h1>";

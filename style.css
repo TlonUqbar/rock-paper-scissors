@@ -27,7 +27,7 @@
   --brown: rgba(165, 42, 42, 1);
   --orange-red: rgba(255, 69, 0, 1);
   --burlywood: rgba(222, 184, 135, 1);
-  --wheat: rgba(245, 222, 179, 1);  /* var(--wheat) */
+  --wheat: rgba(245, 222, 179, 1);
 
   --t1: rgba(18, 16, 16, 1);
   --t2: rgba(16, 14, 14, 0.75);
@@ -40,13 +40,23 @@
   --t9: rgba(11, 84, 11, 1);
   --t10: color-mix(in srgb, var(--t8), #000 25%);
   --t11: color-mix(in srgb, #34c9eb 20%, white 25%);
+
+  --transparent-red:  rgb( 255 0 0 / 0.5);
+  --transparent-blue: rgb(0 0 255 /0.5);
+  --transparent-red-hex: #FF000088;
 }
 
 
-* {
+/* simple reset */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: 0;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 html {
