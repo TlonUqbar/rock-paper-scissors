@@ -27,12 +27,8 @@
     </div>
 
     <div id="start">
-      <!-- <div id="button-container"> -->
         <button id="button" data-option="Keys">Enter</button>
-      <!-- </div> -->
-      <!-- <div id="instructions"> -->
         <p>Click Button or Press <kbd>Enter</kbd> Key.</p>
-      <!-- </div> -->
     </div>
     
 
@@ -64,11 +60,6 @@
       
       <div id="middle-container">      
 
-        <!-- <div id="game-over" style="display: none;">
-          <h2 class="over">Game Over</h2>
-          <h3 id="outcome"></h3>
-        </div> -->
-
         <div id="history" class="show">
           <div class="log">
             <h2 class="log-heading">Plays</h2>
@@ -86,13 +77,16 @@
 
     <div id="controls">
       <div id="rock-container">
-        <a href="#" id="rock" >🪨</a>
+        <div id="rock" data-option="rock" class="choice">🪨</div> 
+        <div id="rock-key" data-key="KeyR" class="key"><kbd>R</kbd></div>
       </div>
       <div id="paper-container">
-        <a href="#" id="paper">📜</a>
+        <div id="paper" data-option="paper" class="choice">📜</div>
+        <div id="paper-key" data-key="KeyP" class="key"><kbd>P</kbd></div>
       </div>
       <div id="scissors-container">
-        <a href="#" id="scissors">✂️</a>
+        <div id="scissors" data-option="scissors"class="choice">✂️</div>
+        <div id="scissors-key" data-key="KeyS" class="key"><kbd>S</kbd></div>
       </div>
     </div>
     <p>Click on your choice.</p>
@@ -124,8 +118,8 @@
           <h3 id="outcome">You Lose!</h3>
 
           <div class="play-again">
-            <a id="again" href="#game-container" class="button">Play Again?</a> 
-            <a id="quit" href="" class="button">Quit</a>
+            <div id="again" class="button">Play <u>A</u>gain?</div>
+            <div id="quit" class="button"><u>Q</u>uit</div>
           </div>
         </div>  
 

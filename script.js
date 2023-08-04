@@ -1,28 +1,16 @@
 /**
- * This a first attempt at making a ROCK-PAPER-SCISSORS game.
+ * This a first attempt at making a ROCK-PAPER-SCISSORS game with a UI.
  * This is part of The Odin Project Curriculum.
  */
 
-const r = "Rock";
-const s = "Scissors";
-const p = "Paper";
+// constants
 const icons = {"rock" : "🪨", "paper" : "📜", "scissors" : "✂️"}
-let playerSelection = '';
-let computerSelection = '';
-let result = '';
-let round = 0;
-let playerScore = 0;
-let computerScore = 0;
-let gameWinner = '';
-const start = document.querySelector("#button");
+const enterButton = document.querySelector("#button");
 const clickRock = document.querySelector("#rock");
 const clickPaper = document.querySelector("#paper");
 const clickScissors = document.querySelector("#scissors");
-const again = document.querySelector("#again");
-const quit = document.querySelector("#quit");
-const rock = () => getHumanChoice(r);
-const paper = () =>  getHumanChoice(p);
-const scissors = () => getHumanChoice(s);
+const againButton = document.querySelector("#again");
+const quitButton = document.querySelector("#quit");
 const intro = document.querySelector("#intro-container");
 const game =  document.querySelector("#game-container");
 const over = document.querySelector("#over-container");
@@ -34,9 +22,28 @@ const outcome = document.querySelector("#outcome");
 const p1Over = document.querySelector("#player1-over");
 const p2Over = document.querySelector("#player2-over");
 
+// annonymous functions
+const rock = () => getHumanChoice("Rock");
+const paper = () =>  getHumanChoice("Paper");
+const scissors = () => getHumanChoice("Scissors");
+const enter = (e) => {  if(e.code === "Enter") startGame(); };
+const playAgain = (e) => { if(e.code === 'KeyA') resetGame(); };
+const quitGame = (e) => { if(e.code === 'KeyQ') introGame() };
+const again = () => resetGame();
+const quit = () => introGame();
 
-start.addEventListener( "click", startGame );
+// variables
+let playerSelection = '';
+let computerSelection = '';
+let result = '';
+let round = 0;
+let playerScore = 0;
+let computerScore = 0;
+let gameWinner = '';
 
+// starting event listeners
+enterButton.addEventListener( "click", startGame );
+window.addEventListener( "keydown", enter );
 
 // using a random number to generate a string based choice
 function getComputerChoice() {
@@ -54,7 +61,6 @@ function getHumanChoice(choice) {
   updateLog();
 }
 
-
 function playRound(player, computer) {
   const moves = { 
     "rock" : { "rock": "It's a tie! Play again!", "paper": "You Lose! Paper covers Rock.", "scissors" : "You Win! Rock breaks Scissors." },
@@ -66,7 +72,6 @@ function playRound(player, computer) {
 
   return moves[playerSelection][computerSelection];
 }
-
 
 function scoreKeeping(result) {
   if( result.includes("You Win!")){
@@ -94,7 +99,6 @@ function fixIconOrientation(div1, div2, div3, move1, move2, result){
   if(move1 === "paper") div1.style.setProperty("rotate", "0.68turn");
   if(move2 === "paper") div2.style.setProperty("rotate", "0.68turn"); 
 }
-
 
 function updateScores(playerSelection, computerSelection, result){
   let player1 = document.querySelector(".player1");
@@ -137,9 +141,6 @@ function updateLastScreen(playerSelection, computerSelection){
   let playerScoreBox = document.querySelector("#p1-over");
   let computerScoreBox = document.querySelector("#p2-over");
 
-  again.addEventListener("click", resetGame );
-  quit.addEventListener("click", startGame );
-
   fixIconOrientation(player1, player2, results, playerSelection, computerSelection, result);
   updateScoreBoxes(playerScoreBox, computerScoreBox);
   finalOutcome();
@@ -173,15 +174,43 @@ function updateScoreBoxes(playerScoreBox, computerScoreBox){
   }
 }
 
+function introGame(){
+  //reset scores 
+  result = '';
+  round = 0;
+  playerScore = 0;
+  computerScore = 0;
+  resetScoresBox();
+
+  // add eventlistners 
+  enterButton.addEventListener( "click", startGame );
+  window.addEventListener( "keydown", enter );
+
+  // change divs inline styles
+  over.style.setProperty( "transform", "scale(0)" );
+  intro.style.setProperty( "transform", "scale(1)" );
+  window.setTimeout( () => ( intro.classList.add("show"), intro.style.display = "" ), 1000);
+  window.setTimeout( () => ( over.style.display = "none" ), 1000 );
+}
+
 function gameOver() { 
-  // remove event listeners for button selections
+  // add eventlistners 
+  window.addEventListener( "keydown", playAgain);
+  window.addEventListener("keydown", quitGame);
+  againButton.addEventListener("click", again );
+  quitButton.addEventListener("click", quit );
+
+  // remove event listeners
   clickRock.removeEventListener("click", rock)
   clickPaper.removeEventListener("click", paper);
   clickScissors.removeEventListener("click", scissors);
+  window.removeEventListener("keydown", movesKeyboard);
   
+  // change divs inline styles
   game.style.setProperty( "transform", "scale(0)" );
   over.style.setProperty( "transform", "scale(0)" );
 
+  // delayed actions
   window.setTimeout( () => (game.classList.remove("show"), game.style.display = "none" ), 1000);
   window.setTimeout( ()=> { over.style.display = ""}, 990)
   window.setTimeout( ()=> ( over.style = "min-height: 98vh, transform: scale(1)" ), 1001);
@@ -193,10 +222,16 @@ function startGame(){
   clickRock.addEventListener( "click", rock )
   clickPaper.addEventListener( "click", paper);
   clickScissors.addEventListener( "click", scissors,);
-  
+  window.addEventListener("keydown", movesKeyboard);
+
+  //remove Enter key event listerner
+  window.removeEventListener( "keydown", enter);
+
+  // change divs inline styles
   intro.style.setProperty( "transform", "scale(0)" );
   game.style.setProperty( "transform", "scale(0)" );
 
+  // delayed actions
   window.setTimeout( () => ( intro.classList.remove("show"), intro.style.display = "none" ), 1000);
   window.setTimeout( ()=> { game.style.display = ""}, 900 );
   window.setTimeout( ()=> ( game.style = "min-height: 98vh, transform: scale(1)" ), 1001);
@@ -209,13 +244,23 @@ function resetGame(){
   playerScore = 0;
   computerScore = 0;
 
+  // add event listeners
   clickRock.addEventListener( "click", rock )
   clickPaper.addEventListener( "click", paper);
   clickScissors.addEventListener( "click", scissors,);
-  
+  window.addEventListener("keydown", movesKeyboard);
+
+  // remove event listeners
+  window.removeEventListener( "keydown", playAgain);
+  window.removeEventListener( "keydown", quitGame);
+  againButton.removeEventListener( "click", again );
+  quitButton.removeEventListener( "click", quit );
+
+  // change divs inline styles
   over.style.setProperty( "transform", "scale(0)" );
   game.style.setProperty( "transform", "scale(0)" );
 
+  // delayed actions
   window.setTimeout( () => ( intro.classList.remove("show"), intro.style.display = "none" ), 1000);
   window.setTimeout( () => ( game.style.display = "" ), 900 );
   window.setTimeout( () => ( game.style = "min-height: 98vh, transform: scale(1)" ), 1010);
@@ -225,13 +270,53 @@ function resetGame(){
 }
 
 function resetScoresBox(){
-    // reset all boards 
-    playerScoreBox.innerText = playerScore;
-    computerScoreBox.innerText = computerScore;
-    playerScoreBox.classList = ["score neutral"];
-    computerScoreBox.classList = ["score neutral"];
-    document.querySelector(".player1").innerHTML = '';
-    document.querySelector(".player2").innerHTML = '';
-    document.querySelector(".result").innerHTML = "<h1>Good Luck!</h1>";
-    playLog.innerHTML = '';
+  // reset all boards
+  playerScoreBox.innerText = playerScore;
+  computerScoreBox.innerText = computerScore;
+  playerScoreBox.classList = ["score neutral"];
+  computerScoreBox.classList = ["score neutral"];
+  document.querySelector(".player1").innerHTML = '';
+  document.querySelector(".player2").innerHTML = '';
+  document.querySelector(".result").innerHTML = "<h1>Good Luck!</h1>";
+  playLog.innerHTML = '';
 }
+
+function movesKeyboard(e){
+  // Use keys "R, P, S" to play, ignore all others
+  const key = document.querySelector(`.key[data-key="${e.code}"]`)
+
+  if(!key) return;
+
+  switch(e.code){
+    case "KeyR":
+      pressed(key);
+      return rock();
+    case "KeyP":
+      pressed(key);
+      return paper();
+    case "KeyS":
+      pressed(key);
+      return scissors();
+    default:
+      break;
+  }
+}
+
+
+function pressed(move) {
+  move.firstElementChild.classList.add("pressed");
+  
+  const keyed = document.querySelector("kbd.pressed");
+  // add eventlistener to remove transition
+  keyed.addEventListener("transitionend", removeTransition);
+}
+
+
+function removeTransition(e){
+  // key reset
+  if (e.propertyName !== "transform") return;
+  // remove() sometimes fails, this is more effective
+  this.classList = [" "];
+}
+
+
