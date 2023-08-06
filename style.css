@@ -46,7 +46,6 @@
   --transparent-red-hex: #FF000088;
 }
 
-
 /* simple reset */
 *,
 *::before,
@@ -60,7 +59,6 @@
 }
 
 html {
-  /* background-color: var(--primary-background); */
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
@@ -73,12 +71,8 @@ body {
   border: 1px solid var(--wheat);
   min-height: 100dvh;
   color: var(--main-color);
-  /* background-color: var(--t3); */
   background: var(--primary-background);
 }
-
-
-
 
 kbd{
   font-family: 'Fira Code';
@@ -102,11 +96,10 @@ h1{
 
 h2{
   font-size: 30px;
-  /* margin-bottom: 40px; */
 }
 
 .log-heading{
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 h3{
@@ -156,16 +149,13 @@ button{
   cursor: pointer;
 }
 
-
-
-
 #intro-container{
   display:flex;
   justify-content: space-evenly;
   align-items: stretch;
   flex-direction: column;
-  flex-basis: calc(100dvh - 4px);
   transition: all 1s ease-in-out;
+  height: calc(100dvh - 4px);
 }
 
 #greeting{
@@ -208,20 +198,6 @@ button{
   flex: 1 0 200px;
 }
 
-
-
-/* 
-.start{
-  display:block;
-  margin-top: 20px;
-  color:--var(--blue);
-}
-
-.start:hover{
-  border: 1px solid var(--wheat);
-  color: var(--orange-red);
-} */
-
 .rock, .scissors{
   align-self: end;
 }
@@ -231,26 +207,21 @@ button{
   flex-basis:20px;
 }
 
-/* #rock, #paper, #scissors{
-  scale: 4;
-  flex: 0 0 auto;
-} */
-
 .rock{
-  /* width: 130px; */
   align-self: end;
 }
 
 .paper{
   transform: rotate(0.68turn);
-  /* width: 130px; */
   align-self: start;
 }
 
+#paper{
+  transform: rotate(0.68turn);
+}
 .scissors{
   transform: rotate(0.25turn);
   align-self: end;
-  /* width: 130px; */
 }
 
 #scissors{
@@ -272,7 +243,6 @@ button{
   flex-basis:150px;
 }
 
-
 #rock-key, #paper-key, #scissors-key{
   margin-top:50px;
 }
@@ -283,7 +253,6 @@ button{
   border: 2px solid wheat;
   box-shadow: 0 0 1rem #ffc600;
 }
-
 
 #game-container{
   display:flex;
@@ -353,7 +322,9 @@ button{
   align-items: start;
   color: var(--secondary-color);
   border-radius: 5px;
-  /* margin-top: 10px; */
+  min-height: 30vh;
+  padding-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 #player1{
@@ -373,8 +344,6 @@ button{
   flex-basis: 580px;
   justify-content: center;
   align-items: stretch;
-  /* max-height: calc(100dvh - 6px); */
-  /* padding-top: 18px; */
 }
 
 #history{
@@ -387,8 +356,6 @@ button{
   border-radius: 10px;
   transition: all 1s ease-in-out;
 }
-
-
 
 .show{
   display: flex;
@@ -432,8 +399,9 @@ button{
 }
 
 .log{
-  padding: 10px 0;
+  padding: 5px 0;
 }
+
 .over{
   font-size: 36px;
   padding: 10px 0;
@@ -465,25 +433,15 @@ button{
   border-radius: 50%;
   border: 1px var(--play-border);
   border-style:groove ;
-  /* min-width: 80px; */
 }
 
 #controls{
   display: flex;
   justify-content: center;
-  align-items: end;
-  /* margin-top: 20px; */
+  align-items: center;
   padding-bottom: 40px;
   flex: auto;
 }
-
-/* .spacer{
-
-  height: 10px;
-  margin-top: 20px;
-  margin: 5px 0 5px;
-  display: block;
-} */
 
 #over-container{
   display: flex;

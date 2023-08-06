@@ -22,15 +22,16 @@ const outcome = document.querySelector("#outcome");
 const p1Over = document.querySelector("#player1-over");
 const p2Over = document.querySelector("#player2-over");
 
+
 // annonymous functions
 const rock = () => getHumanChoice("Rock");
 const paper = () =>  getHumanChoice("Paper");
 const scissors = () => getHumanChoice("Scissors");
 const enter = (e) => {  if(e.code === "Enter") startGame(); };
 const playAgain = (e) => { if(e.code === 'KeyA') resetGame(); };
-const quitGame = (e) => { if(e.code === 'KeyQ') introGame() };
+const quitGame = (e) => { if(e.code === 'KeyQ') backToIntro() };
 const again = () => resetGame();
-const quit = () => introGame();
+const quit = () => backToIntro();
 
 // variables
 let playerSelection = '';
@@ -54,94 +55,88 @@ function getComputerChoice() {
 }
 
 function getHumanChoice(choice) {
-  computerSelection = getComputerChoice();
-  playerSelection = choice;
+  computerSelection = getComputerChoice().toLowerCase();
+  playerSelection = choice.toLowerCase();
   result = playRound(playerSelection, computerSelection);
-  updateScores(playerSelection, computerSelection, result)
-  updateLog();
+  updateScores();
 }
 
-function playRound(player, computer) {
+function playRound(playerSelection, computerSelection) {
   const moves = { 
     "rock" : { "rock": "It's a tie! Play again!", "paper": "You Lose! Paper covers Rock.", "scissors" : "You Win! Rock breaks Scissors." },
     "paper" : { "rock": "You Win! Paper covers Rock.", "paper": "It's a tie! Play again!", "scissors" : "You Lose! Scissors cuts Paper." },
     "scissors" : { "rock": "You Lose! Rock breaks Scissors.", "paper": "You Win! Scissors cuts Paper.", "scissors" : "It's a tie! Play again!" }
   }
-  playerSelection = player.toLowerCase();
-  computerSelection = computer.toLowerCase();
 
   return moves[playerSelection][computerSelection];
 }
 
-function scoreKeeping(result) {
-  if( result.includes("You Win!")){
-    playerScore++;
-    round++;
-  } else if (result.includes("You Lose!")){
-    computerScore++;
-    round++;
-  } else {
-    return;
-  }
-}
-
-function fixIconOrientation(div1, div2, div3, move1, move2, result){
-  let parts  = result.split("! ");
-
-  div3.innerHTML = `<h3 class="round-result">${parts[0]}</h3><h4 class="round-play">${parts[1]}</h4>`;
-  div1.textContent = icons[move1];
-  div2.textContent = icons[move2];
- 
-  if(move1 === "rock") div1.style.rotate = "";
-  if(move2 === "rock") div2.style.rotate = "";
-  if(move1 === "scissors") div1.style.setProperty("rotate", "0.25turn");
-  if(move2 === "scissors") div2.style.setProperty("rotate", "0.25turn");
-  if(move1 === "paper") div1.style.setProperty("rotate", "0.68turn");
-  if(move2 === "paper") div2.style.setProperty("rotate", "0.68turn"); 
-}
-
-function updateScores(playerSelection, computerSelection, result){
-  let player1 = document.querySelector(".player1");
-  let player2 = document.querySelector(".player2");
-  let results = document.querySelector(".result");
-
-  fixIconOrientation(player1, player2, results, playerSelection, computerSelection, result);
-  scoreKeeping(result);
-  updateScoreBoxes(playerScoreBox, computerScoreBox)
-
-  if( round === 5 ) {
-    updateLastScreen(playerSelection, computerSelection);
-    gameOver();
-  }
-}
-
-function updateLog(){
+function scoreKeeping() {
   const li = document.createElement("li");
   let state1 = '';
   let state2 = '';
 
-  if(result.includes("You Win!")){
-   state1 = "winner";
-   state2 = "loser";
+  if( result.includes("You Win!")){
+    playerScore++;
+    round++;
+    state1 = "winner";
+    state2 = "loser";
   } else if (result.includes("You Lose!")){
+    computerScore++;
+    round++;
     state1 = "loser";
     state2 = "winner";
   } else {
     state1 = "tie";
     state2 = "tie";
-  }  
+  }
+ 
   li.innerHTML = `<div class="${state1}">${icons[playerSelection]}</div> <div>Round ${round}</div> <div class="${state2}">${icons[computerSelection]}</div>`;
   playLog.appendChild(li);
+
+  // edge case when the play box has more than 15 entries
+  // this brings the controls back into view automatically after showing the scoreboard
+  window.setTimeout( () => ( document.querySelector("#controls").scrollIntoView() ), 1500);
 }
 
-function updateLastScreen(playerSelection, computerSelection){
+function fixIconOrientation(div1, div2, div3){
+  let parts  = result.split("! ");
+
+  div3.innerHTML = `<h3 class="round-result">${parts[0]}</h3><h4 class="round-play">${parts[1]}</h4>`;
+  div1.textContent = icons[playerSelection];
+  div2.textContent = icons[computerSelection];
+ 
+  if(playerSelection === "rock") div1.style.rotate = "";
+  if(computerSelection === "rock") div2.style.rotate = "";
+  if(playerSelection === "scissors") div1.style.setProperty("rotate", "0.25turn");
+  if(computerSelection === "scissors") div2.style.setProperty("rotate", "0.25turn");
+  if(playerSelection === "paper") div1.style.setProperty("rotate", "0.68turn");
+  if(computerSelection === "paper") div2.style.setProperty("rotate", "0.68turn"); 
+}
+
+function updateScores(){
+  let player1 = document.querySelector(".player1");
+  let player2 = document.querySelector(".player2");
+  let results = document.querySelector(".result");
+
+  fixIconOrientation(player1, player2, results);
+  scoreKeeping();
+  updateScoreBoxes(playerScoreBox, computerScoreBox);
+  
+  if( round === 5 ) {
+    updateLastScreen();
+    gameOver();
+  }
+}
+
+function updateLastScreen(){
   let player1 = document.querySelector("#board-over .player1");
   let player2 = document.querySelector("#board-over .player2");
   let results = document.querySelector("#board-over .result");
   let playerScoreBox = document.querySelector("#p1-over");
   let computerScoreBox = document.querySelector("#p2-over");
 
-  fixIconOrientation(player1, player2, results, playerSelection, computerSelection, result);
+  fixIconOrientation(player1, player2, results);
   updateScoreBoxes(playerScoreBox, computerScoreBox);
   finalOutcome();
 }
@@ -158,39 +153,21 @@ function finalOutcome(){
 }
 
 function updateScoreBoxes(playerScoreBox, computerScoreBox){
-  let player = playerScoreBox;
-  let computer = computerScoreBox;
-  player.innerText = playerScore;
-  computer.innerText = computerScore;
+  playerScoreBox.innerText = playerScore;
+  computerScoreBox.innerText = computerScore;
+  console.log("scores", playerScore, computerScore)
   if(playerScore > computerScore){
-    player.classList = ["score winning"];
-    computer.classList = ["score losing"];
+    playerScoreBox.classList = ["score winning"];
+    computerScoreBox.classList = ["score losing"];
   }else if (playerScore < computerScore){
-    player.classList = ["score losing"];
-    computer.classList = ["score winning"];
+    playerScoreBox.classList = ["score losing"];
+    computerScoreBox.classList = ["score winning"];
   } else {
-    player.classList = ["score neutral"];
-    computer.classList = ["score neutral"];
+    playerScoreBox.classList = ["score neutral"];
+    computerScoreBox.classList = ["score neutral"];
   }
-}
-
-function introGame(){
-  //reset scores 
-  result = '';
-  round = 0;
-  playerScore = 0;
-  computerScore = 0;
-  resetScoresBox();
-
-  // add eventlistners 
-  enterButton.addEventListener( "click", startGame );
-  window.addEventListener( "keydown", enter );
-
-  // change divs inline styles
-  over.style.setProperty( "transform", "scale(0)" );
-  intro.style.setProperty( "transform", "scale(1)" );
-  window.setTimeout( () => ( intro.classList.add("show"), intro.style.display = "" ), 1000);
-  window.setTimeout( () => ( over.style.display = "none" ), 1000 );
+  // edge case when there are more than 15 entries in the play box, very unlikely!
+  document.querySelector("#announcements").scrollIntoView();
 }
 
 function gameOver() { 
@@ -302,7 +279,6 @@ function movesKeyboard(e){
   }
 }
 
-
 function pressed(move) {
   move.firstElementChild.classList.add("pressed");
   
@@ -311,7 +287,6 @@ function pressed(move) {
   keyed.addEventListener("transitionend", removeTransition);
 }
 
-
 function removeTransition(e){
   // key reset
   if (e.propertyName !== "transform") return;
@@ -319,4 +294,46 @@ function removeTransition(e){
   this.classList = [" "];
 }
 
+function backToIntro(){
+  let height = (document.querySelector("body").clientHeight - 2)+ 'px';
+  // let visible = over;
+  // let hidden = intro;
+  let greet = document.querySelector("#greeting").style;
+  let quest = document.querySelector("#question").style;
+  let rps = document.querySelector("#rps").style;
+  let start = document.querySelector("#start").style;
 
+  //reset scores 
+  result = '';
+  round = 0;
+  playerScore = 0;
+  computerScore = 0;
+  resetScoresBox();
+
+  // add eventlistners 
+  enterButton.addEventListener( "click", startGame );
+  window.addEventListener( "keydown", enter );
+
+  // hide divs inside hidden div so that the slide down effect can work seamlessly 
+  greet.display = "none";
+  quest.display = "none";
+  rps.display = "none";
+  start.display = "none";
+
+  // hidden div style changes
+  intro.style.height = "0px";
+  intro.style.setProperty("background-color", "rgba(19, 36, 44, 1)");
+  intro.style.setProperty( "transform", "scale(1)" );
+  intro.classList.add("show");
+
+  // visible div style changes
+  over.style.height = height;
+  over.style.setProperty( "transform", "scale(0)" );
+
+  // delayed actions and changes
+  window.setTimeout( () => ( over.style.height = ''), 10);
+  window.setTimeout( () => ( intro.style.display = ""), 100);
+  window.setTimeout( () => ( over.style.display = "none" ), 1000 );
+  window.setTimeout( () => ( greet.display = "", quest.display = "", rps.display = "", start.display = ""), 1500);
+  window.setTimeout( () => ( intro.style.height = '', intro.style.removeProperty("background-color")), 1200);
+}
