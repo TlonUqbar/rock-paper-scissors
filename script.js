@@ -94,8 +94,8 @@ function scoreKeeping() {
   li.innerHTML = `<div class="${state1}">${icons[playerSelection]}</div> <div>Round ${round}</div> <div class="${state2}">${icons[computerSelection]}</div>`;
   playLog.appendChild(li);
 
-  // edge case when the play box has more than 15 entries
-  // this brings the controls back into view automatically after showing the scoreboard
+  // when the play box has more than 15 entries, the scores and controls grow apart
+  // this brings the controls back into view after a differnt call shows the scores first
   window.setTimeout( () => ( document.querySelector("#controls").scrollIntoView() ), 1500);
 }
 
@@ -123,7 +123,7 @@ function updateScores(){
   scoreKeeping();
   updateScoreBoxes(playerScoreBox, computerScoreBox);
   
-  if( round === 5 ) {
+  if( playerScore === 5 || computerScore === 5 ) {
     updateLastScreen();
     gameOver();
   }
@@ -166,7 +166,8 @@ function updateScoreBoxes(playerScoreBox, computerScoreBox){
     playerScoreBox.classList = ["score neutral"];
     computerScoreBox.classList = ["score neutral"];
   }
-  // edge case when there are more than 15 entries in the play box, very unlikely!
+  // when there are more than 15 entries in the play box the scores are not visible
+  // this brings them back into view, later another call brings the controls into view
   document.querySelector("#announcements").scrollIntoView();
 }
 

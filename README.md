@@ -1,31 +1,32 @@
-# ROCK-PAPER-SCISSORS GAME V1
+# ROCK-PAPER-SCISSORS (UI) GAME V2
 
+## REQUIREMENTS (AND NO RESTRICTIONS - SO I WENT CRAZY AND HAD FUN!)
 
-## REQUIREMENTS AND RESTRICTIONS
-- [x] Create a new git repo for the project 
-- [x] Work from an external.js file.  (script.js)
-  - [x] Files needed (index.html, sytle.css and script.js), I guess the css is optional.
-- [x] The game will be played completely from the console.  
-- [x] Opponent will be the computer
-- [x] Make a function called `getComputerChoice` that will randomly return "Rock, Paper or Scissors".
-	- [x] This is how we'll get the computer to play.
-- [x] Write a function the plays a single round of "Rock Paper Scissors".
-	- [x] The function should take 2 parameters.
-  - [x] 1. Player Selection
-  - [x] 2. Computer Selection
-	- [x] The function should return a string that declares the winner of the round.   e.g. "You Lose! Paper beats Rock"
-	- [x] Make  the playersSelection parameter case-insensitive.  All these are valid inputs `rock`, `ROCK`, `Rock`, `RoCk` and any other variant.
-	- [x] Make sure that the function returns a value.  Will need to use that value later.
-- [x] Write a function called `game`
-	- [x] Use the previous function (play single round) inside of function game
-	- [x] Game will play a 5 round game that keeps scores, and reports a winner and a loser at the end.
-	- [x] Feel free to use a loop.  
-	- [x] Use `console.log()` to display the results of each round and the winner at the end.
-	- [x] Use `prompt` to get input from the user
-- [x] Feel free to re-work previous functions as needed.  Specifically, you might want to change the return value to something more useful.
-- [x] Feel free to create more "helper" functions if needed
+git Tasks
+[x] Create a new branch and work from it
+[x] Push new branch to remote with 'git push origin rock-paper-scissors-ui'
+[x] Merge feature branch into main branch
+[x] Prune feature branch with 'git push --delete origin rock-paper-scissors-ui'
 
-- [x] All requirement met!
+UI Requirements and Tasks
+[x] Play game by clicking buttons
+[x] Temporarily remove logic to play only 5 rounds
+[x] Create 3 buttons, one for each selection. 
+  [x] Add an Event Listener to each button 
+  [x] when clicked the button will call "playRound" with correct "playerSelection" 
+[x] Add a 'div' for displaying results
+[x] Change all 'console.log()'s  into DOM methods.
+[x] Display the running score.
+[x] Announce the winner of the game when a players reaches 5 points.
+[x] Refactor original work to make this work.
+
+Bonus:
+[x] Add a log to record previous plays.
+[x] Play game by pressing keys.
+[x] Add transitions to indicate start of play and end of play.
+[x] Keep original game [console-game](https://tlonuqbar.github.io/rock-paper-scissors/console-game/)
+[x] All requirement met!
+
 ---
 
 ### GAME PLAY
@@ -41,7 +42,8 @@
 - They will be simultaneously displayed and compared and a victor is declared.
 - If there is a tie, the round will be played again, until there is a winner.
 - The game is usually played in "Best of X" or "First to X" format.
-- The requirements ask for a Best of 5 game.  So Best of 5 it is.
+- The requirements ask for (console version) a Best of 5 game.  So Best of 5 it is.
+	- The UI version changed that to first to 5. First to 5 point wins.
 - Definition of a Round.
   - A round is any number of plays until a winner is decided.
   - A round can last one play, or it can for as many a needed to find a winner.
