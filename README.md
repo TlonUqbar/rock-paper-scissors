@@ -2,30 +2,30 @@
 
 ## REQUIREMENTS (AND NO RESTRICTIONS - SO I WENT CRAZY AND HAD FUN!)
 
-git Tasks
-[x] Create a new branch and work from it
-[x] Push new branch to remote with 'git push origin rock-paper-scissors-ui'
-[x] Merge feature branch into main branch
-[x] Prune feature branch with 'git push --delete origin rock-paper-scissors-ui'
+#### git Tasks
+- [x] Create a new branch and work from it
+- [x] Push new branch to remote with 'git push origin rock-paper-scissors-ui'
+- [x] Merge feature branch into main branch
+- [x] Prune feature branch with 'git push --delete origin rock-paper-scissors-ui'
 
-UI Requirements and Tasks
-[x] Play game by clicking buttons
-[x] Temporarily remove logic to play only 5 rounds
-[x] Create 3 buttons, one for each selection. 
-  [x] Add an Event Listener to each button 
-  [x] when clicked the button will call "playRound" with correct "playerSelection" 
-[x] Add a 'div' for displaying results
-[x] Change all 'console.log()'s  into DOM methods.
-[x] Display the running score.
-[x] Announce the winner of the game when a players reaches 5 points.
-[x] Refactor original work to make this work.
+#### UI Requirements and Tasks
+- [x] Play game by clicking buttons
+- [x] Temporarily remove logic to play only 5 rounds
+- [x] Create 3 buttons, one for each selection. 
+  - [x] Add an Event Listener to each button 
+  - [x] when clicked the button will call "playRound" with correct "playerSelection" 
+- [x] Add a 'div' for displaying results
+- [x] Change all 'console.log()'s  into DOM methods.
+- [x] Display the running score.
+- [x] Announce the winner of the game when a players reaches 5 points.
+- [x] Refactor original work to make this work.
 
-Bonus:
-[x] Add a log to record previous plays.
-[x] Play game by pressing keys.
-[x] Add transitions to indicate start of play and end of play.
-[x] Keep original game [console-game](https://tlonuqbar.github.io/rock-paper-scissors/console-game/)
-[x] All requirement met!
+#### Bonus:
+- [x] Add a log to record previous plays.
+- [x] Play game by pressing keys.
+- [x] Add transitions to indicate start of play and end of play.
+- [x] Keep original game [console-game](https://tlonuqbar.github.io/rock-paper-scissors/console-game/)
+- [x] All requirement met!
 
 ---
 
