@@ -28,6 +28,7 @@
   --orange-red: rgba(255, 69, 0, 1);
   --burlywood: rgba(222, 184, 135, 1);
   --wheat: rgba(245, 222, 179, 1);
+  --button-action: rgba(233, 222, 39, 1);
 
   --t1: rgba(18, 16, 16, 1);
   --t2: rgba(16, 14, 14, 0.75);
@@ -404,7 +405,7 @@ button{
 
 .over{
   font-size: 36px;
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 
 .winner{
@@ -540,7 +541,7 @@ button{
   background-color: var(--fouth-background);
   border-radius: 5px;
   margin: 0 10px;
-  color: var(--blue);
+  color: var(--button-actionq);
   font-size: 10px;
   cursor: pointer;
 }
