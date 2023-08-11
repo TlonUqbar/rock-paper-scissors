@@ -181,7 +181,6 @@ button{
   align-items:stretch;
   flex-direction: row;
   flex-basis: 150px;
-  font-family: "Segoe UI Symbol";
 }
 
 #pieces{
@@ -542,7 +541,7 @@ button{
   background-color: var(--fouth-background);
   border-radius: 5px;
   margin: 0 10px;
-  color: var(--button-actionq);
+  color: var(--button-action);
   font-size: 10px;
   cursor: pointer;
 }
