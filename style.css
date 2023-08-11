@@ -60,8 +60,8 @@
 }
 
 html {
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 16px;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -181,6 +181,7 @@ button{
   align-items:stretch;
   flex-direction: row;
   flex-basis: 150px;
+  font-family: "Segoe UI Symbol";
 }
 
 #pieces{
