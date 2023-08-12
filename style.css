@@ -189,6 +189,7 @@ button{
   align-items: center;
   flex-direction:row;
   flex-basis: 300px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 #start{
@@ -234,6 +235,7 @@ button{
   scale: 4;
   display: flex;
   flex-basis: 15px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 #rock-container, #paper-container, #scissors-container{
