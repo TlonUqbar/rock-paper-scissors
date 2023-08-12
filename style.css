@@ -189,7 +189,7 @@ button{
   align-items: center;
   flex-direction:row;
   flex-basis: 300px;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI Symbol";
 }
 
 #start{
@@ -235,7 +235,7 @@ button{
   scale: 4;
   display: flex;
   flex-basis: 15px;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI Symbol";
 }
 
 #rock-container, #paper-container, #scissors-container{
@@ -265,6 +265,7 @@ button{
   min-height: calc(100dvh - 2px);
   flex:auto;
   transition: all 1s ease-in-out;
+  gap:10px;
 }
 
 .header{
@@ -277,12 +278,12 @@ button{
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .player1, .player2{
-  flex-basis: 60px;
+  flex-basis: 30px;
   transform: scale(3);
+  font-family: "Segoe UI Symbol";
 }
 
 .result{
@@ -315,8 +316,7 @@ button{
   border: 1px dotted var(--wheat);
   border-radius: 5px;
   color: var(--secondary-color);
-  margin: 0 10px;
-  padding: 20px;
+  gap: 30px;
 }
 
 #score-board{
@@ -328,6 +328,7 @@ button{
   min-height: 30vh;
   padding-bottom: 50px;
   margin-bottom: 10px;
+  row-gap: 60px;
 }
 
 #player1{
@@ -335,9 +336,8 @@ button{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 300px;
-  margin-right: 10px;
-  padding-top: 50px;
+  flex-basis: 150px;
+  padding-top: 62px;
 }
 
 #middle-container{
@@ -381,14 +381,14 @@ button{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 300px;
-  padding-top: 50px;
-  margin-right: 10px;
+  flex-basis: 150px;
+  padding-top: 62px;
 }
 
 .contestants{
   font-size: 24px;
   font-weight: 900;
+  width: 120px;
 }
 
 .score{
@@ -398,7 +398,6 @@ button{
   padding: 10px;
   width: 80px;
   font-size: 30px;
-  margin: 2px 20px 0 10px;
 }
 
 .log{
@@ -420,6 +419,10 @@ button{
 
 .tie, .neutral{
   background-color: var(--tie-neutral);
+}
+
+.winner, .loser, .tie {
+  font-family: "Segoe UI Symbol";
 }
 
 .winning{
@@ -504,18 +507,18 @@ button{
   justify-content: center;
   align-items: start;
   margin-top: 8px;
-  padding-top: 0px;
-  flex-basis: 600px;
 }
 
 #history-over{
   border: none;
   background-color: none;
   display: flex;
-  border-radius:10px;
+  border-radius: 10px;
   flex-direction: column;
   flex-wrap: wrap;
   align-self: stretch;
+  width: 600px;
+  flex-basis: content;
 }
 
 #player1-over {
@@ -524,8 +527,6 @@ button{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
-  margin-left: 20px;
 }
 
 #player2-over{
@@ -534,8 +535,6 @@ button{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
-  margin-right:20px;
 }
 
 .button{

@@ -101,15 +101,14 @@ function scoreKeeping() {
 
 function fixIconOrientation(div1, div2, div3){
   let parts  = result.split("! ");
-  const iconsPlayer = { "rock" : div1.style.rotate = "", "scissors": div1.style.setProperty("rotate", "0.25turn"), "paper" : div1.style.setProperty("rotate", "0.68turn") };
-  const iconsComputer = { "rock" : div2.style.rotate = "", "scissors" : div2.style.setProperty("rotate", "0.25turn"), "paper" : div2.style.setProperty("rotate", "0.68turn") };
+  const iconsPlayer = { "rock" : "rotate: 0turn", "scissors": "rotate: 0.75turn", "paper" : "rotate: 0.88turn" };
+  const iconsComputer = { "rock" : "rotate: 0turn", "scissors" : "rotate: 0.25turn", "paper" : "rotate: 0.58turn" };
 
   div3.innerHTML = `<h3 class="round-result">${parts[0]}</h3><h4 class="round-play">${parts[1]}</h4>`;
   div1.textContent = icons[playerSelection];
   div2.textContent = icons[computerSelection];
- 
-  iconsPlayer[playerSelection];
-  iconsComputer[computerSelection];
+  div1.style = iconsPlayer[playerSelection];
+  div2.style = iconsComputer[computerSelection];
 }
 
 function updateScores(){
@@ -153,7 +152,7 @@ function finalOutcome(){
 function updateScoreBoxes(playerScoreBox, computerScoreBox){
   playerScoreBox.innerText = playerScore;
   computerScoreBox.innerText = computerScore;
-  console.log("scores", playerScore, computerScore)
+  // console.log("scores", playerScore, computerScore)
   if(playerScore > computerScore){
     playerScoreBox.classList = ["score winning"];
     computerScoreBox.classList = ["score losing"];
@@ -171,7 +170,7 @@ function updateScoreBoxes(playerScoreBox, computerScoreBox){
 
 function gameOver() { 
   // add eventlistners 
-  window.addEventListener( "keydown", playAgain);
+  window.addEventListener("keydown", playAgain);
   window.addEventListener("keydown", quitGame);
   againButton.addEventListener("click", again );
   quitButton.addEventListener("click", quit );
