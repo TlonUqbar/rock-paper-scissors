@@ -101,17 +101,15 @@ function scoreKeeping() {
 
 function fixIconOrientation(div1, div2, div3){
   let parts  = result.split("! ");
+  const iconsPlayer = { "rock" : div1.style.rotate = "", "scissors": div1.style.setProperty("rotate", "0.25turn"), "paper" : div1.style.setProperty("rotate", "0.68turn") };
+  const iconsComputer = { "rock" : div2.style.rotate = "", "scissors" : div2.style.setProperty("rotate", "0.25turn"), "paper" : div2.style.setProperty("rotate", "0.68turn") };
 
   div3.innerHTML = `<h3 class="round-result">${parts[0]}</h3><h4 class="round-play">${parts[1]}</h4>`;
   div1.textContent = icons[playerSelection];
   div2.textContent = icons[computerSelection];
  
-  if(playerSelection === "rock") div1.style.rotate = "";
-  if(computerSelection === "rock") div2.style.rotate = "";
-  if(playerSelection === "scissors") div1.style.setProperty("rotate", "0.25turn");
-  if(computerSelection === "scissors") div2.style.setProperty("rotate", "0.25turn");
-  if(playerSelection === "paper") div1.style.setProperty("rotate", "0.68turn");
-  if(computerSelection === "paper") div2.style.setProperty("rotate", "0.68turn"); 
+  iconsPlayer[playerSelection];
+  iconsComputer[computerSelection];
 }
 
 function updateScores(){
